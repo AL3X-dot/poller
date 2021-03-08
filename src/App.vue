@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-wrapper grey lighten-3 z-depth-2 valign-wrapper">
     <div class="brand-logo black-text center ">
-      <span><i class="material-icons">done_all</i>Pollitout</span>
+      <span><i class="material-icons" id="logo">done_all</i>Pollitout</span>
     </div>
   </nav>
   <div class="container">
@@ -16,7 +16,7 @@
             <div class="row center">
               <a class="blue-text text-darken-1 activator" @click="create">Create A Poll</a>
             </div>
-            <div class="row center">
+            <div class="row center" style="margin-bottom:0">
               <a class="blue-text text-darken-1 activator" @click='join'>Join A Poll</a>
             </div>
           </div>
@@ -30,6 +30,12 @@
               <div class="col s2">
                 <i class="material-icons" style="cursor:pointer" @click='addOption'>add</i>
               </div>
+            </div>
+            <div class="row">
+              <blockquote class="flow-text" v-for='(option,index) in options' :key='index' id="options">
+                {{option}}
+                <i class="material-icons right">delete</i>
+              </blockquote>
             </div>
           </div>
           <div :class="j_c_class" :style="hide" id="join">
@@ -73,17 +79,20 @@ export default {
       this.j_c_display=''
     },
     addOption(){
-      console.log(this.option);
+      this.options.push(this.option)
     }
   }
 }
 </script>
 
 <style>
-  .material-icons{
+  #logo{
     margin-top:5px
   }
   .myTitle{
     font-weight: 400;
+  }
+  #options:hover{
+    box-shadow:10px 10px 20px grey
   }
 </style>
